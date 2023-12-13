@@ -20,10 +20,12 @@ module.exports = {
     'react/jsx-props-no-spreading': 'off',
     'react/function-component-definition': 'off',
     '@typescript-eslint/no-shadow': ['warn'],
+    'react/button-has-type': 'off',
     'react-refresh/only-export-components': [
       'warn',
       { allowConstantExport: true },
     ],
+    'import/prefer-default-export': 'off',
     'indent':[
       'error',
       2

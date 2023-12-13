@@ -1,8 +1,15 @@
-function App() {
-  console.log('App');
+import {
+  Route,
+  Routes,
+} from 'react-router-dom';
 
+import { Home } from './components/layout/Home';
+
+function App() {
   return (
-    <h1>search-test-app</h1>
+    <Routes>
+      <Route path="/" element={<Home />} />
+    </Routes>
   );
 }
 
