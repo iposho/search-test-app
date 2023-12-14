@@ -1,10 +1,10 @@
 import { FC, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import { Filters } from '../Fliters';
-import { PsychologistsList } from '../Psychologists';
+import { Filters } from '../../components/layout/Fliters';
+import { PsychologistsList } from '../../components/layout/Psychologists';
 
-import { IPsychologistFilters } from '../../../models';
+import { IPsychologistFilters } from '../../models';
 
 import css from './Home.module.scss';
 

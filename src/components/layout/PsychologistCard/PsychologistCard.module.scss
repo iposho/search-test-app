@@ -1,0 +1,161 @@
+.card {
+  display: flex;
+  width: 100%;
+  max-width: calc(50% - .25rem);
+  margin-bottom: 1rem;
+  margin-right: .5rem;
+  flex-direction: column;
+
+  &:nth-child(2n) {
+    margin-right: 0;
+  }
+}
+
+.image {
+  position: relative;
+  width: 100%;
+  margin-bottom: .5rem;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .rating {
+    display: flex;
+    flex-direction: column;
+    padding: .5rem .125rem .25rem .125rem;
+    position: absolute;
+    top: .25rem;
+    left: .25rem;
+    border-radius: .125rem;
+    background-color: #fff;
+    justify-content: center;
+    min-width: 28px;
+    height: 28px;
+
+    .ratingTitle {
+      font-size: .25rem;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .ratingValue {
+      font-size: 1rem;
+      text-align: center;
+      font-weight: 500;
+    }
+
+    .ratingValueNew {
+      font-size: .5rem;
+      text-align: center;
+      font-weight: 500;
+      margin: .125rem 0 .3125rem 0;
+    }
+  }
+}
+
+.info {
+
+  .name {
+    font-size: .875rem;
+    font-weight: 500;
+    margin-bottom: .25rem;
+  }
+
+  .onlineStatus {
+    background-color: #37b86b;
+    min-width: 8px;
+    min-height: 8px;
+    border-radius: 50%;
+    display: inline-flex;
+    margin-left: .25rem;
+    margin-bottom: 3px;
+  }
+
+  .theme {
+    color: #666666;
+    font-size: .75rem;
+    font-style: italic;
+    font-weight: 500;
+  }
+
+  .themes {
+    display: none;
+  }
+
+  .lastSeen {
+    display: none;
+    font-size: 1.125rem;
+    color: #ccc;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .card {
+    max-width: 352px;
+    margin-right: 1.25rem;
+    margin-bottom: 2.5rem;
+
+    &:nth-child(2n) {
+      margin-right: 1.25rem;
+    }
+
+    &:nth-child(3n) {
+      margin-right: 0;
+    }
+  }
+
+  .image {
+
+    .rating {
+      min-width: 52px;
+      height: 52px;
+      top: .75rem;
+      left: .75rem;
+
+      .ratingTitle {
+        font-size: .5rem;
+      }
+
+      .ratingValue {
+        font-size: 1.5rem;
+      }
+
+      .ratingValueNew {
+        font-size: 1rem;
+      }
+    }
+  }
+
+  .info {
+
+    .name {
+      font-size: 1.625rem;
+    }
+
+    .onlineStatus {
+      min-width: 12px;
+      min-height: 12px;
+      margin-bottom: .5rem;
+    }
+
+    .theme {
+      font-size: 1.125rem;
+      margin-bottom: .5rem;
+    }
+
+    .themes {
+      display: inline-block;
+      opacity: 0.5;
+      margin-left: .5ch;
+    }
+
+    .lastSeen {
+      display: block;
+    }
+  }
+}

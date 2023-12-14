@@ -2,6 +2,8 @@ import { FC } from 'react';
 
 import { useGetPsychologistsQuery } from '../../../store/api/server.api';
 
+import { PsychologistCard } from '../PsychologistCard';
+
 import { IPsychologistFilters } from '../../../models';
 
 import css from './PsychologistsList.module.scss';
@@ -33,7 +35,7 @@ export const PsychologistsList:FC<PsychologistsListProps> = ({ filters, paginati
       }
       {
         (Array.isArray(items) && items.length > 0)
-          && 'Full Data'
+          && items.map((item) => <PsychologistCard key={item.userId} data={item} />)
       }
       {
         (Array.isArray(items) && items.length === 0)

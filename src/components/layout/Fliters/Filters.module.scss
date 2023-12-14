@@ -1,3 +1,10 @@
+.filters {
+  border-radius: .125rem;
+  border: 1px solid #ccc;
+  margin-bottom: .5rem;
+  padding: .5rem;
+}
+
 .form {
   display: flex;
   flex-wrap: wrap;
@@ -64,6 +71,10 @@
 
 
 @media screen and (min-width: 1200px) {
+  .filters {
+    border: none;
+    padding: 0;
+  }
 
   .form {
     display: flex;
