@@ -7,7 +7,7 @@ export const api = createApi({
   endpoints: (builder) => ({
     getPsychologists: builder.query({
       query: ({
-        offset, limit, sex, ageFrom, ageTo, subjectId, profSpeciality, rating, isCertified,
+        offset, limit, sex, ageFrom, ageTo, subjectId, profSpeciality, ratingFrom, ratingTo, isCertified,
       }) => ({
         url: 'search/specialists',
         params: {
@@ -17,9 +17,10 @@ export const api = createApi({
           ageFrom,
           ageTo,
           subjectId,
-          profSpeciality,
-          rating,
-          isCertified,
+          profSpeciality: profSpeciality !== '4' ? profSpeciality : '',
+          ratingFrom,
+          ratingTo,
+          isCertified: profSpeciality === '4' || isCertified,
         },
       }),
     }),

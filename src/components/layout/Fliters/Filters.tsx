@@ -1,11 +1,16 @@
-import { FC, useEffect, useState } from 'react';
+import {
+  ChangeEvent, FC, useEffect, useState,
+} from 'react';
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 
 import { useGetSubjectsQuery } from '../../../store/api/server.api';
 
 import { Button } from '../../ui/Button';
 
-import { IPsychologistFilters } from '../../../models';
+import { handleRatingChange, mapRatingToValues } from '../../../helpers/ratingUtils';
+
+import { IPsychologistFilters, ISubject } from '../../../models';
+import { RATING_OPTIONS, QUALIFICATION } from '../../../constants';
 
 import css from './Filters.module.scss';
 
@@ -20,40 +25,51 @@ export const Filters: FC<FiltersProps> = ({ defaultValues, onFiltersChange }) =>
     control,
     handleSubmit,
     setValue,
-  } = useForm();
+  } = useForm<IPsychologistFilters>();
 
   const { data: subjectsData } = useGetSubjectsQuery({});
 
   const [isCertified, setIsCertified] = useState('');
+  const [rating, setRating] = useState({});
 
-  const handleProfSpecialityChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleProfSpecialityChange = (event: ChangeEvent<HTMLSelectElement>) => {
     const selectedValue = event.target.value;
-    console.log(selectedValue);
     if (selectedValue === '4') {
-      setIsCertified(true);
+      setIsCertified('true');
     } else {
       setIsCertified('');
     }
   };
 
-  const onSubmit: SubmitHandler<any> = (data) => {
-    onFiltersChange({ ...data, isCertified });
+  const onSubmit: SubmitHandler<IPsychologistFilters> = (data) => {
+    onFiltersChange({ ...data, isCertified, ...rating });
   };
 
   useEffect(() => {
-    Object.entries(defaultValues).forEach(([fieldName, value]) => {
-      setValue(fieldName as keyof PsychologistFilters, value);
+    const selectedRating = mapRatingToValues({
+      ratingFrom: Number(defaultValues.ratingFrom),
+      ratingTo: Number(defaultValues.ratingTo),
     });
-  }, [defaultValues, setValue]);
 
-  useEffect(() => {
-    const defaultValue = register('profSpeciality')?.defaultChecked;
-    if (defaultValue === '4') {
-      setIsCertified(true);
-    }
-  }, [register]);
+    setValue('rating', selectedRating);
 
-  console.log('render');
+    Object.entries(defaultValues).forEach(([fieldName, value]) => {
+      if (fieldName === 'isCertified' && !!value) {
+        setIsCertified(isCertified);
+        setValue('profSpeciality', QUALIFICATION.PSYCHOLOGIST_DIPLOMA);
+      }
+
+      if (fieldName === 'profSpeciality' && value === '4') {
+        setIsCertified(isCertified);
+      }
+
+      if (fieldName === 'rating') {
+        return;
+      }
+
+      setValue(fieldName as keyof IPsychologistFilters, value);
+    });
+  }, [isCertified, defaultValues, setValue]);
 
   return (
     <div className={css.filters}>
@@ -115,7 +131,7 @@ export const Filters: FC<FiltersProps> = ({ defaultValues, onFiltersChange }) =>
             <label htmlFor="subjectId" className={css.label}>
               Тема
               <select {...field}>
-                {subjectsData?.data?.map((subject) => (
+                {subjectsData?.data?.map((subject: ISubject) => (
                   <option key={subject.id} value={subject.id}>
                     {subject.name}
                   </option>
@@ -133,19 +149,24 @@ export const Filters: FC<FiltersProps> = ({ defaultValues, onFiltersChange }) =>
             onChange={handleProfSpecialityChange}
           >
             <option value="">Все варианты</option>
-            <option value="1">Консультант</option>
-            <option value="3">Коуч</option>
-            <option value="4">Диплом психолога</option>
-            <option value="2">Сексолог</option>
+            <option value={QUALIFICATION.CONSULTANT}>Консультант</option>
+            <option value={QUALIFICATION.COACH}>Коуч</option>
+            <option value={QUALIFICATION.PSYCHOLOGIST_DIPLOMA}>Диплом психолога</option>
+            <option value={QUALIFICATION.SEXOLOGIST}>Сексолог</option>
           </select>
         </label>
 
         <label htmlFor="rating" className={css.label}>
           Рейтинг
-          <select {...register('rating')}>
-            <option value="">Select...</option>
-            <option value="A">Option A</option>
-            <option value="B">Option B</option>
+          <select
+            {...register('rating')}
+            onChange={(event) => handleRatingChange(event, setRating)}
+          >
+            <option value={RATING_OPTIONS.NOT_IMPORTANT}>Не важен</option>
+            <option value={RATING_OPTIONS.NEW}>Новые</option>
+            <option value={RATING_OPTIONS.FROM_100_TO_80}>от 100 до 80</option>
+            <option value={RATING_OPTIONS.FROM_79_TO_60}>от 79 до 60</option>
+            <option value={RATING_OPTIONS.FROM_59_TO_40}>от 59 до 40</option>
           </select>
         </label>
 
