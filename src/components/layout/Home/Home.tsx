@@ -21,6 +21,7 @@ export const Home: FC = () => {
     subjectId: Number(params.get('subjectId') || '8'),
     profSpeciality: params.get('profSpeciality') || '',
     rating: params.get('rating') || '',
+    isCertified: params.get('isCertified') || '',
   });
 
   const [pagination, setPagination] = useState({
@@ -38,8 +39,15 @@ export const Home: FC = () => {
     if (newFilters.ageFrom) queryParams.append('ageFrom', String(newFilters.ageFrom));
     if (newFilters.ageTo) queryParams.append('ageTo', String(newFilters.ageTo));
     if (newFilters.subjectId) queryParams.append('subjectId', String(newFilters.subjectId));
-    if (newFilters.profSpeciality) queryParams.append('profSpeciality', newFilters.profSpeciality);
     if (newFilters.rating) queryParams.append('rating', newFilters.rating);
+
+    if (newFilters.profSpeciality) {
+      if (newFilters.profSpeciality === '4') {
+        queryParams.append('isCertified', String(newFilters.isCertified));
+      } else {
+        queryParams.append('profSpeciality', newFilters.profSpeciality);
+      }
+    }
 
     queryParams.append('offset', String(pagination.offset));
     queryParams.append('limit', String(pagination.limit));

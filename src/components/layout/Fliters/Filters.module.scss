@@ -1,0 +1,117 @@
+.form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem 5rem;
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  font-weight: 700;
+  font-size: .875rem;
+
+  select {
+    border-radius: 2px;
+    border: 1px solid #ccc;
+    margin-top: .75rem;
+    height: 2.5rem;
+    padding: .5rem;
+    -webkit-appearance: none;
+    appearance: none;
+    background-image: url("../../../assets/images/dropdown.svg");
+    background-repeat: no-repeat;
+    background-position: calc(100% - .5rem) center;
+    background-size: .75rem;
+    font-size: .875rem;
+
+    &:focus {
+      background-image: url("../../../assets/images/dropdownUp.svg");
+    }
+  }
+}
+
+.labelAge {
+  flex-direction: row;
+  align-items: center;
+
+  span {
+    margin-right: .5rem;
+  }
+
+  .ageRange {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    align-items: center;
+    flex: 1 0 0;
+
+    label {
+      font-weight: normal;
+    }
+
+    select {
+      margin-left: .25rem;
+      margin-top: 0;
+      width: 60px;
+    }
+  }
+}
+
+.button {
+  width: 100%;
+}
+
+
+@media screen and (min-width: 1200px) {
+
+  .form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2.25rem 5rem;
+  }
+
+  .label {
+    max-width: 312px;
+    font-size: 1.25rem;
+
+    select {
+      height: 3.25rem;
+      padding: .75rem;
+      margin-top: .5rem;
+      font-size: 1.25rem;
+    }
+  }
+
+  .labelAge {
+    flex-direction: column;
+    align-items: flex-start;
+
+    span {
+      margin-right: 0;
+      margin-bottom: .5rem;
+    }
+
+    .ageRange {
+      justify-content: space-between;
+      width: 100%;
+
+      select {
+        margin-left: 0.5rem;
+        margin-top: 0;
+        width: 88px;
+      }
+    }
+  }
+
+  .button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: flex-end;
+    max-width: 312px;
+    height: 52px;
+    font-size: 1.25rem;
+  }
+
+}
