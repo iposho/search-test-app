@@ -2,11 +2,11 @@ import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import {
-  DEFALUT_SUBJECT_ID,
+  DEFAULT_SUBJECT_ID,
   DEFAULT_AGE_TO,
   DEFAULT_LIMIT,
   DEFAULT_OFFSET,
-  DEFAUTL_AGE_FROM,
+  DEFAULT_AGE_FROM,
   RATING_OPTIONS,
 } from '../constants';
 
@@ -20,9 +20,9 @@ export const usePsychologistFilters = () => {
 
   const [filters, setFilters] = useState<IPsychologistFilters>({
     sex: params.get('sex') || '',
-    ageFrom: Number(params.get('ageFrom') || DEFAUTL_AGE_FROM),
+    ageFrom: Number(params.get('ageFrom') || DEFAULT_AGE_FROM),
     ageTo: Number(params.get('ageTo') || DEFAULT_AGE_TO),
-    subjectId: Number(params.get('subjectId') || DEFALUT_SUBJECT_ID),
+    subjectId: Number(params.get('subjectId') || DEFAULT_SUBJECT_ID),
     profSpeciality: params.get('profSpeciality') || '',
     rating: params.get('rating') || '',
     isCertified: params.get('isCertified') || '',
@@ -74,7 +74,6 @@ export const usePsychologistFilters = () => {
     }
 
     if (filters.profSpeciality) {
-      console.log(filters.profSpeciality);
       if (filters.profSpeciality === '4' || filters.isCertified) {
         queryParams.append('isCertified', String(true));
       } else {

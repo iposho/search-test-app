@@ -14,7 +14,7 @@ export const RATING_OPTIONS = {
 };
 
 export const DEFAULT_LIMIT = 12;
-export const DEFAUTL_AGE_FROM = 18;
+export const DEFAULT_AGE_FROM = 18;
 export const DEFAULT_AGE_TO = 74;
-export const DEFALUT_SUBJECT_ID = 8;
+export const DEFAULT_SUBJECT_ID = 8;
 export const DEFAULT_OFFSET = 0;

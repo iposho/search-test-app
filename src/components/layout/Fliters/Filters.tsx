@@ -10,7 +10,9 @@ import { Button } from '../../ui/Button';
 import { handleRatingChange, mapRatingToValues } from '../../../helpers/ratingUtils';
 
 import { IPsychologistFilters, ISubject } from '../../../models';
-import { RATING_OPTIONS, QUALIFICATION } from '../../../constants';
+import {
+  RATING_OPTIONS, QUALIFICATION, DEFAULT_AGE_FROM, DEFAULT_AGE_TO, DEFAULT_SUBJECT_ID,
+} from '../../../constants';
 
 import css from './Filters.module.scss';
 
@@ -27,7 +29,7 @@ export const Filters: FC<FiltersProps> = ({ defaultValues, onFiltersChange }) =>
     setValue,
   } = useForm<IPsychologistFilters>();
 
-  const { data: subjectsData } = useGetSubjectsQuery({});
+  const { data: subjectsData, isLoading } = useGetSubjectsQuery({});
 
   const [isCertified, setIsCertified] = useState('');
   const [rating, setRating] = useState({});
@@ -92,6 +94,7 @@ export const Filters: FC<FiltersProps> = ({ defaultValues, onFiltersChange }) =>
             <Controller
               name="ageFrom"
               control={control}
+              defaultValue={DEFAULT_AGE_FROM}
               render={({ field }) => (
                 <label htmlFor="ageFrom">
                   От
@@ -108,6 +111,7 @@ export const Filters: FC<FiltersProps> = ({ defaultValues, onFiltersChange }) =>
             <Controller
               name="ageTo"
               control={control}
+              defaultValue={DEFAULT_AGE_TO}
               render={({ field }) => (
                 <label htmlFor="ageTo">
                   До
@@ -127,15 +131,19 @@ export const Filters: FC<FiltersProps> = ({ defaultValues, onFiltersChange }) =>
         <Controller
           name="subjectId"
           control={control}
+          defaultValue={DEFAULT_SUBJECT_ID}
           render={({ field }) => (
             <label htmlFor="subjectId" className={css.label}>
               Тема
               <select {...field}>
-                {subjectsData?.data?.map((subject: ISubject) => (
-                  <option key={subject.id} value={subject.id}>
-                    {subject.name}
-                  </option>
-                ))}
+                {
+                  !isLoading
+                  && subjectsData?.data?.map((subject: ISubject) => (
+                    <option key={subject.id} value={subject.id}>
+                      {subject.name}
+                    </option>
+                  ))
+                }
               </select>
             </label>
           )}
@@ -144,7 +152,6 @@ export const Filters: FC<FiltersProps> = ({ defaultValues, onFiltersChange }) =>
         <label htmlFor="profSpeciality" className={css.label}>
           Квалификация
           <select
-            defaultValue=""
             {...register('profSpeciality')}
             onChange={handleProfSpecialityChange}
           >
