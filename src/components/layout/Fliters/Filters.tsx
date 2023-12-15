@@ -67,7 +67,7 @@ export const Filters: FC<FiltersProps> = ({ defaultValues, onFiltersChange }) =>
         return;
       }
 
-      setValue(fieldName as keyof IPsychologistFilters, value);
+      setValue(fieldName as string, value);
     });
   }, [isCertified, defaultValues, setValue]);
 

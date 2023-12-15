@@ -1,9 +1,10 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-const baseUrl = 'https://freuders-web-api-test-3.azurewebsites.net/api/';
+const baseUrl = import.meta.env.VITE_API_URL;
+
 export const api = createApi({
   reducerPath: 'api',
-  baseQuery: fetchBaseQuery({ baseUrl }), // Замените '/api' на вашу базовую URL
+  baseQuery: fetchBaseQuery({ baseUrl }),
   endpoints: (builder) => ({
     getPsychologists: builder.query({
       query: ({
