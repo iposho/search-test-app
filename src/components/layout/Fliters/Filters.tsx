@@ -11,7 +11,7 @@ import { handleRatingChange, mapRatingToValues } from '../../../helpers/ratingUt
 
 import { IPsychologistFilters, ISubject } from '../../../models';
 import {
-  RATING_OPTIONS, QUALIFICATION, DEFAULT_AGE_FROM, DEFAULT_AGE_TO, DEFAULT_SUBJECT_ID,
+  RATING_OPTIONS, QUALIFICATION, DEFAULT_AGE_FROM, DEFAULT_AGE_TO, DEFAULT_SUBJECT_ID, SEX,
 } from '../../../constants';
 
 import css from './Filters.module.scss';
@@ -83,8 +83,8 @@ export const Filters: FC<FiltersProps> = ({ defaultValues, onFiltersChange }) =>
           Я ищу психолога
           <select {...register('sex')}>
             <option value="">Любого пола</option>
-            <option value="1">Мужской</option>
-            <option value="2">Женский</option>
+            <option value={SEX.MALE}>Мужской</option>
+            <option value={SEX.FEMALE}>Женский</option>
           </select>
         </label>
 

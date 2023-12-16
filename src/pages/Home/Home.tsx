@@ -2,6 +2,7 @@ import { FC } from 'react';
 import { Filters } from '../../components/layout/Fliters';
 import { PsychologistsList } from '../../components/layout/PsychologistsList';
 import { usePsychologistFilters } from '../../hooks/usePsychologistFilters';
+
 import css from './Home.module.scss';
 
 export const Home: FC = () => {

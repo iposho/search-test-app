@@ -1,3 +1,8 @@
+export const SEX = {
+  MALE: '1',
+  FEMALE: '2',
+};
+
 export const QUALIFICATION = {
   CONSULTANT: '1',
   COACH: '3',

@@ -2,8 +2,9 @@ import { FC } from 'react';
 
 import { useGetPsychologistsQuery } from '../../../store/api/server.api';
 
-import { PsychologistCard } from '../PsychologistCard';
 import { Button } from '../../ui/Button';
+import { Spinner } from '../../ui/Spinner';
+import { PsychologistCard } from '../PsychologistCard';
 
 import { IPsychologistFilters, IPsychologistsPagination } from '../../../models';
 
@@ -18,13 +19,17 @@ interface PsychologistsListProps {
 }
 
 export const PsychologistsList:FC<PsychologistsListProps> = ({ filters, pagination, onLoadMore }) => {
-  const { data, isError, isLoading } = useGetPsychologistsQuery({
+  const {
+    data, error, isError, isLoading,
+  } = useGetPsychologistsQuery({
     offset: pagination.offset,
     limit: pagination.limit,
     ...filters,
   });
 
   const { items, totalCount } = data?.data || [];
+
+  console.log(error);
 
   return (
     <div className={css.psychologists}>
@@ -34,7 +39,7 @@ export const PsychologistsList:FC<PsychologistsListProps> = ({ filters, paginati
       }
       {
         isLoading
-        && <>Loading...</>
+        && <Spinner />
       }
       {
         (Array.isArray(items) && items.length > 0)
