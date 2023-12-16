@@ -1,0 +1,41 @@
+.errorAlert {
+  margin: 0 auto;
+  padding: 6px 16px;
+  color: rgb(95, 33, 32);
+  display: flex;
+  width: 100%;
+  max-width: 728px;
+}
+
+.errorIcon {
+  margin-right: 1rem;
+
+  span {
+    width: 1.5rem;
+    height: 1.5rem;
+    display: inline-flex;
+    border-radius: 50%;
+    color: #d74544;
+    font-weight: 700;
+    align-items: center;
+    font-size: 1.25rem;
+    justify-content: center;
+    border: 2px solid #d74544;
+  }
+}
+
+.info {
+  font-family: monospace;
+  font-size: .75rem;
+  word-break: break-all;
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-bottom: .5rem;
+}
+
+.status {
+  margin-bottom: .5rem;
+}

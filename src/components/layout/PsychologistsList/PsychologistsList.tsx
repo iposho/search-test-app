@@ -11,6 +11,7 @@ import { IPsychologistFilters, IPsychologistsPagination } from '../../../models'
 import emptySearchImage from '../../../assets/images/emptySearchIcon.svg';
 
 import css from './PsychologistsList.module.scss';
+import { ErrorAlert } from '../../ui/ErrorAlert';
 
 interface PsychologistsListProps {
   filters: IPsychologistFilters;
@@ -29,13 +30,11 @@ export const PsychologistsList:FC<PsychologistsListProps> = ({ filters, paginati
 
   const { items, totalCount } = data?.data || [];
 
-  console.log(error);
-
   return (
     <div className={css.psychologists}>
       {
         isError
-        && <>Something went wrong</>
+        && <ErrorAlert error={error} />
       }
       {
         isLoading

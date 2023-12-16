@@ -31,7 +31,7 @@ export const PsychologistCard: FC<PsychologistCardProps> = ({ data }) => {
   const age = calculateAge(birthDate);
   const pluralizedThemes = pluralize(subjectsCount, ['тема', 'темы', 'тем']);
 
-  const imageSrc = photoUrl || (sex === 1 ? noImageMan : noImageWoman);
+  const imageSrc = photoUrl || (sex !== 2 ? noImageWoman : noImageMan);
 
   const dt = DateTime.fromISO(lastActivityTime);
   const lastSeen = dt.toRelative();
