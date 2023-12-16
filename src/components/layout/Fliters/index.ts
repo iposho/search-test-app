@@ -1,1 +1,1 @@
-export { Filters } from './Filters.tsx';
+export { Filters } from './Filters';

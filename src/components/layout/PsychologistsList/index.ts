@@ -1,1 +1,1 @@
-export { PsychologistsList } from './PsychologistsList.tsx';
+export { PsychologistsList } from './PsychologistsList';

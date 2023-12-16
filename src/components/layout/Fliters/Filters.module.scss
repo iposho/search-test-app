@@ -1,8 +1,8 @@
 .filters {
-  border-radius: .125rem;
-  border: 1px solid #ccc;
-  margin-bottom: .5rem;
   padding: .5rem;
+  border: 1px solid #ccc;
+  border-radius: .125rem;
+  margin-bottom: .5rem;
 }
 
 .form {
@@ -13,22 +13,21 @@
 
 .label {
   display: flex;
-  flex-direction: column;
   width: 100%;
-  font-weight: 700;
+  flex-direction: column;
   font-size: .875rem;
+  font-weight: 700;
 
   select {
-    border-radius: 2px;
-    border: 1px solid #ccc;
-    margin-top: .75rem;
     height: 2.5rem;
     padding: .5rem;
-    -webkit-appearance: none;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    margin-top: .75rem;
     appearance: none;
     background-image: url("../../../assets/images/dropdown.svg");
-    background-repeat: no-repeat;
     background-position: calc(100% - .5rem) center;
+    background-repeat: no-repeat;
     background-size: .75rem;
     font-size: .875rem;
 
@@ -48,19 +47,19 @@
 
   .ageRange {
     display: flex;
+    flex: 1 0 0;
+    align-items: center;
     justify-content: flex-end;
     gap: 1rem;
-    align-items: center;
-    flex: 1 0 0;
 
     label {
       font-weight: normal;
     }
 
     select {
-      margin-left: .25rem;
-      margin-top: 0;
       width: 60px;
+      margin-top: 0;
+      margin-left: .25rem;
     }
   }
 }
@@ -70,10 +69,10 @@
 }
 
 
-@media screen and (min-width: 1200px) {
+@media screen and (width >= 1200px) {
   .filters {
-    border: none;
     padding: 0;
+    border: none;
   }
 
   .form {
@@ -104,24 +103,24 @@
     }
 
     .ageRange {
-      justify-content: space-between;
       width: 100%;
+      justify-content: space-between;
 
       select {
-        margin-left: 0.5rem;
-        margin-top: 0;
         width: 88px;
+        margin-top: 0;
+        margin-left: 0.5rem;
       }
     }
   }
 
   .button {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    align-self: flex-end;
     max-width: 312px;
     height: 52px;
+    align-items: center;
+    align-self: flex-end;
+    justify-content: center;
     font-size: 1.25rem;
   }
 

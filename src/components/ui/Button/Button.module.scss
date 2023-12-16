@@ -1,14 +1,14 @@
 .button {
+  height: auto;
   padding: 8px;
+  border: 0;
   background-color: #ff006b;
   color: #fff;
-  border: 0;
-  font-weight: bold;
-  font-size: .875rem;
-  height: auto;
   cursor: pointer;
+  font-size: .875rem;
+  font-weight: bold;
 
   &:hover {
-    background-color: rgba(255, 0, 107, 0.5);
+    background-color: rgb(255 0 107 / 50%);
   }
 }
